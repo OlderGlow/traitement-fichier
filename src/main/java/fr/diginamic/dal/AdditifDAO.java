@@ -61,4 +61,12 @@ public class AdditifDAO implements DAO<Additif> {
             throw new DalException("Erreur lors de la récupération de l'additif");
         }
     }
+
+    public Additif selectByLibelle(String libelle) throws DalException {
+        try {
+            return em.createQuery("SELECT a FROM Additif a WHERE a.libelle = :libelle", Additif.class).setParameter("libelle", libelle).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

@@ -62,4 +62,13 @@ public class CategorieDAO implements DAO<Categorie> {
             throw new DalException("Erreur lors de la récupération de la catégorie");
         }
     }
+
+    public Categorie selectByLibelle(String libelle) throws DalException {
+        try {
+            return em.createQuery("SELECT c FROM Categorie c WHERE c.libelle = :libelle", Categorie.class).setParameter("libelle", libelle).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

@@ -62,4 +62,12 @@ public class IngredientDAO implements DAO<Ingredient> {
             throw new DalException("Erreur lors de la récupération de l'ingredient");
         }
     }
+
+    public Ingredient selectByLibelle(String libelle) throws DalException {
+        try {
+            return em.createQuery("SELECT i FROM Ingredient i WHERE i.libelle = :libelle", Ingredient.class).setParameter("libelle", libelle).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

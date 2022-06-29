@@ -61,4 +61,12 @@ public class AllergeneDAO implements DAO<Allergene> {
             throw new DalException("Erreur lors de la récupération de l'allergene");
         }
     }
+
+    public Allergene selectByLibelle(String libelle) throws DalException {
+        try {
+            return em.createQuery("SELECT a FROM Allergene a WHERE a.libelle = :libelle", Allergene.class).setParameter("libelle", libelle).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

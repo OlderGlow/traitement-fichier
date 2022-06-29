@@ -3,27 +3,27 @@ package fr.diginamic.dal;
 import fr.diginamic.entite.*;
 
 public class DAOFactory {
-    public static DAO<Produit> getProduitDAO() {
+    public static ProduitDAO getProduitDAO() {
         return new ProduitDAO();
     }
 
-    public static DAO<Additif> getAdditifDAO() {
+    public static AdditifDAO getAdditifDAO() {
         return new AdditifDAO();
     }
 
-    public static DAO<Allergene> getAllergeneDAO() {
+    public static AllergeneDAO getAllergeneDAO() {
         return new AllergeneDAO();
     }
 
-    public static DAO<Categorie> getCategorieDAO() {
+    public static CategorieDAO getCategorieDAO() {
         return new CategorieDAO();
     }
 
-    public static DAO<Ingredient> getIngredientDAO() {
+    public static IngredientDAO getIngredientDAO() {
         return new IngredientDAO();
     }
 
-    public static DAO<Marque> getMarqueDAO() {
+    public static MarqueDAO getMarqueDAO() {
         return new MarqueDAO();
     }
 }

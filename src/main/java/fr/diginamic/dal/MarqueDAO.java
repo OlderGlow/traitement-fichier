@@ -61,4 +61,12 @@ public class MarqueDAO implements DAO<Marque> {
             throw new DalException("Erreur lors de la récupération de la marque");
         }
     }
+
+    public Marque selectByLibelle(String libelle) throws DalException {
+        try {
+            return em.createQuery("SELECT m FROM Marque m WHERE m.libelle = :libelle", Marque.class).setParameter("libelle", libelle).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
