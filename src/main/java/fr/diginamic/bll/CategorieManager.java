@@ -43,14 +43,17 @@ public class CategorieManager {
         }
     }
 
-    public void create(Categorie categorie) throws BLLException {
+    public Categorie create(Categorie categorie) throws BLLException {
         try {
             if(categorieDAO.selectByLibelle(categorie.getLibelle()) == null) {
                 categorieDAO.create(categorie);
+            } else {
+                return null;
             }
         } catch (DalException e) {
             throw new BLLException("Erreur lors de l'insertion de la catégorie", e);
         }
+        return categorie;
     }
 
     public void update(Categorie categorie) throws BLLException {
@@ -66,6 +69,14 @@ public class CategorieManager {
             categorieDAO.delete(categorie);
         } catch (DalException e) {
             throw new BLLException("Erreur lors de la suppression de la catégorie", e);
+        }
+    }
+
+    public Categorie getCategorieByLibelle(String libelle) throws BLLException {
+        try {
+            return categorieDAO.selectByLibelle(libelle);
+        } catch (DalException e) {
+            throw new BLLException("Erreur lors de la récupération de la catégorie", e);
         }
     }
 

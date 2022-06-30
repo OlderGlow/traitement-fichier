@@ -11,11 +11,11 @@ public class Produit {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "marque_id")
     private Marque marque;
 
@@ -24,15 +24,15 @@ public class Produit {
     @Embedded
     private ValeurNutritionelle valeurNutritionelle;
 
-    @ManyToMany
-    @JoinTable(name = "produit_allergene", joinColumns = @JoinColumn(name = "produit_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    @ManyToMany(cascade=CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "produit_ingredients", joinColumns = @JoinColumn(name = "produit_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private Set<Ingredient> ingredients;
 
-    @ManyToMany
-    @JoinTable(name = "produit_allergene", joinColumns = @JoinColumn(name = "produit_id"), inverseJoinColumns = @JoinColumn(name = "additif_id"))
+    @ManyToMany(cascade=CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "produit_additifs", joinColumns = @JoinColumn(name = "produit_id"), inverseJoinColumns = @JoinColumn(name = "additif_id"))
     private Set<Additif> additifs;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "produit_allergene", joinColumns = @JoinColumn(name = "produit_id"), inverseJoinColumns = @JoinColumn(name = "allergene_id"))
     private Set<Allergene> allergenes;
 

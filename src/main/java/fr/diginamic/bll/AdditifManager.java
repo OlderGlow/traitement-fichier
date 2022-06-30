@@ -42,14 +42,17 @@ public class AdditifManager {
         }
     }
 
-    public void create(Additif additif) throws BLLException {
+    public Additif create(Additif additif) throws BLLException {
         try {
             if(additifDAO.selectByLibelle(additif.getLibelle()) == null && additif.getLibelle() != null) {
                 additifDAO.create(additif);
+            } else {
+                return null;
             }
         } catch (DalException e) {
             throw new BLLException("Erreur lors de l'insertion de l'additif", e);
         }
+        return additif;
     }
 
     public void update(Additif additif) throws BLLException {

@@ -1,6 +1,7 @@
 package fr.diginamic.entite;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "categorie")

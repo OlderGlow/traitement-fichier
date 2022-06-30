@@ -40,14 +40,17 @@ public class IngredientManager {
         }
     }
 
-    public void create(Ingredient ingredient) throws BLLException {
+    public Ingredient create(Ingredient ingredient) throws BLLException {
         try {
             if(ingredientDAO.selectByLibelle(ingredient.getLibelle()) == null && ingredient.getLibelle() != null) {
                 ingredientDAO.create(ingredient);
+            } else {
+                return null;
             }
         } catch (DalException e) {
             throw new BLLException("Erreur lors de l'insertion de l'ingrédient", e);
         }
+        return ingredient;
     }
 
     public void update(Ingredient ingredient) throws BLLException {
