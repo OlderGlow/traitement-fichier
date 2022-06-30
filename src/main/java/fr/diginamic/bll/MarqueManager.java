@@ -45,7 +45,7 @@ public class MarqueManager {
             if(marqueDAO.selectByLibelle(marque.getLibelle()) == null && marque.getLibelle() != null) {
                 marqueDAO.create(marque);
             } else {
-                return null;
+                return marqueDAO.selectByLibelle(marque.getLibelle());
             }
         } catch (DalException e) {
             throw new BLLException("Erreur lors de l'insertion de la marque", e);

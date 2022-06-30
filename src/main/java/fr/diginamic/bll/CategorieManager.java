@@ -48,7 +48,7 @@ public class CategorieManager {
             if(categorieDAO.selectByLibelle(categorie.getLibelle()) == null) {
                 categorieDAO.create(categorie);
             } else {
-                return null;
+                return categorieDAO.selectByLibelle(categorie.getLibelle());
             }
         } catch (DalException e) {
             throw new BLLException("Erreur lors de l'insertion de la catégorie", e);

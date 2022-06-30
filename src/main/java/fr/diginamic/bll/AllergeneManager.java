@@ -5,7 +5,7 @@ import fr.diginamic.dal.DAOFactory;
 import fr.diginamic.dal.DalException;
 import fr.diginamic.entite.Allergene;
 
-import java.util.List;
+import java.util.*;
 
 public class AllergeneManager {
     private static volatile AllergeneManager instance;
@@ -44,7 +44,7 @@ public class AllergeneManager {
 
     public Allergene create(Allergene allergene) throws BLLException {
         try {
-            if(allergeneDAO.selectByLibelle(allergene.getLibelle()) == null && allergene.getLibelle() != null) {
+            if(allergeneDAO.selectByLibelle(allergene.getLibelle()) == null && allergene.getLibelle() != null && !Objects.equals(allergene.getLibelle(), "")) {
                 allergeneDAO.create(allergene);
             } else {
                 return null;
